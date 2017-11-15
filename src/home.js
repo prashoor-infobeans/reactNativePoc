@@ -2,10 +2,10 @@ import React from 'react';
 import Basetemplate from './layouts/basicTemplate';
 import DeviceStorage from 'react-device-storage';
 
-class Hometemplate extends React.Component {
+class Home extends React.Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {user_login: "", user_pass: ""};;
         this.onSubmit = this.handleSubmit.bind(this);
         this.storage = new DeviceStorage({
             cookieFallback: true,
@@ -98,6 +98,6 @@ class Hometemplate extends React.Component {
                 )
     }
 }
-export default Hometemplate;
+export default Home;
 
 
