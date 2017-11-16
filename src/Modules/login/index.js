@@ -5,6 +5,7 @@ import DeviceStorage from 'react-device-storage';
 import Form from '../../Components/form';
 import FormContainer from '../../Components/FormContainer';
 import LoginFormEntry from './LoginFormEntry';
+import Platform from '../../Platform';
 
 class Loginmodule extends React.Component {
     constructor() {
@@ -38,21 +39,29 @@ class Loginmodule extends React.Component {
                     user_login: this.state.user_login,
                     user_pass: this.state.user_pass
                 })
-            }).then(resp => {
+            }
+        ).then(resp => {
             let copyRes = resp.clone();
 
             resp.json().then(rp => {
                 let response = JSON.parse(rp);
                 if (response.permission) {
-                    this.setName(response.permission);
-                    this.props.history.push('/demo')
+                    Platform({
+                        web: ()=> {
+                            this.setName(response.permission);
+                            this.props.history.push('/demo')
+                        },
+                        native: (platform)=> {
+                            console.log(platform);
+                        }
+                    }, () => {
+                        console.log("failed");
+                    })
                 }
             }).catch(err => {
-
                 copyRes.text().then(rp => {
                     console.log(rp);
                 });
-
             });
         }).catch(err => {
             console.log(err);
