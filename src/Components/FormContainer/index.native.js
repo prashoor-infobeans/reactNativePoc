@@ -1,19 +1,23 @@
 import React from 'react';
-import {} from 'react-native';
+import {View, Text} from 'react-native';
 
-import Form from '../../Components/form';
-
-class Loginmodule extends React.Component {
+export default class FormContainer extends React.Component {
     render() {
         return (
-            <Form>
-                <View style={{borderBottomWidth: 1, paddingBottom: 5}}>
-                    <TextInput style={{height: 35}} autoCapitalize='none' autoCorrect={false} placeholder="Name" onChangeText={this.update.bind(this, "uname")}/>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor: '#228f5f'}}>
+                <View style={{width: 300, backgroundColor: 'white', flex: 0.5, borderRadius: 3, overflow: 'hidden'}}>
+                    <View style={{width: '100%', backgroundColor: 'white', alignItems: 'center', flex: 1, paddingTop: 5, paddingBottom: 5}}>
+                        <Text style={{color: 'darkgray', fontSize: 19}}>{this.props.title}</Text>
+                    </View>
+                    <View style={{flex: 3}}>
+                        {this.props.children}
+                    </View>
                 </View>
-                <View style={{borderBottomWidth: 1, paddingBottom: 5}}>
-                    <TextInput secureTextEntry={true} style={{height: 35}} placeholder="Password" onChangeText={this.update.bind(this, "password")}/>
-                </View>
-            </Form>
+            </View>
         )
     }
+}
+
+FormContainer.defaultProps = {
+    title: ""
 }
