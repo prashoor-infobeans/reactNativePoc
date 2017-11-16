@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './assets/css/main.css';
-import Home from './home';
+import Login from './Modules/login';
 
 
-ReactDOM.render(<Home />, document.getElementById('app'));
+ReactDOM.render(<Login />, document.getElementById('app'));
 
 //registerServiceWorker();
