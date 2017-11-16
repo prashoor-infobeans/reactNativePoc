@@ -3,7 +3,7 @@ import React from 'react';
 class Basicfooter extends React.Component{
     render() {
         return (
-                <footer ></footer>
+                <footer {...this.props}/>
         )
     }
 }

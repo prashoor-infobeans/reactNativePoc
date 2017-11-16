@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Basetemplate from '../../layouts/basicTemplate';
 import DeviceStorage from 'react-device-storage';
 
@@ -19,8 +20,6 @@ class Loginmodule extends React.Component {
         };
     }
     handleChange(e) {
-        e.target.classList.add("active");
-
         this.setState({
             [e.target.id]: e.target.value
         });
@@ -45,7 +44,7 @@ class Loginmodule extends React.Component {
                 let response = JSON.parse(rp);
                 if (response.permission) {
                     this.setName(response.permission);
-                    window.location.reload();
+                    this.props.history.push('/demo')
                 }
             }).catch(err => {
 
