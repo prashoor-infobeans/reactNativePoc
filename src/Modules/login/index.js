@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Basetemplate from '../../layouts/basicTemplate';
 import DeviceStorage from 'react-device-storage';
 import Form from '../../Components/form';
@@ -44,7 +45,7 @@ class Loginmodule extends React.Component {
                 let response = JSON.parse(rp);
                 if (response.permission) {
                     this.setName(response.permission);
-                    window.location.reload();
+                    this.props.history.push('/demo')
                 }
             }).catch(err => {
 
