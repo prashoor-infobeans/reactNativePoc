@@ -2,11 +2,13 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Basetemplate from '../../layouts/basicTemplate';
 import DeviceStorage from 'react-device-storage';
+import Form from '../../Components/form';
+import FormContainer from '../../Components/FormContainer';
+import LoginFormEntry from './LoginFormEntry';
 
 class Loginmodule extends React.Component {
     constructor() {
         super();
-        this.onSubmit = this.handleSubmit.bind(this);
         this.storage = new DeviceStorage({
             cookieFallback: true,
             cookie: {
@@ -19,13 +21,12 @@ class Loginmodule extends React.Component {
             isLoggedIn: this.storage.read('isLoggedIn')
         };
     }
-    handleChange(e) {
-        this.setState({
-            [e.target.id]: e.target.value
-        });
+    
+    update(key, text) {
+        this.setState({[key]: text})
     }
-    handleSubmit(e) {
-        e.preventDefault();
+
+    handleSubmit() {
         fetch(
             'http://rohit.corporatesitepoc.com/index.php/wp-json/dummyForm/update',
             {
@@ -57,45 +58,22 @@ class Loginmodule extends React.Component {
             console.log(err);
         });
     }
+
     setName(premission) {
         this.storage.save('isLoggedIn', premission);
         this.setState({
           premission
         });
     }
+
     render() {
-        
         return (
-                <Basetemplate className="bannerContent">
-                    <div className="loginForm">
-                        <div className="loginFormHeading">
-                            <h1>Sign In</h1>
-                        </div>
-                        <div className="loginFormModule">
-                            <form name="loginform" id="loginform"  method="post" onSubmit={this.onSubmit}>
-                                <div className="input-text-box-wp">
-                                    <div className="icon-login-user"></div>
-                                    <input placeholder="abc@xyz.com" type="text" name="log" id="user_login" className="input input-mid-box width-100" value={this.state.user_login} onChange={this.handleChange.bind(this)} />
-                                    <div className="clearfix"></div>
-                                </div>
-                                <div className="input-text-box-wp">
-                                    <div className="icon-login-password"></div>
-                                    <input placeholder="Password" type="password" name="pwd" id="user_pass" className="input input-mid-box width-100" value={this.state.user_pass} onChange={this.handleChange.bind(this)}/>
-                                    <div className="clearfix"></div>
-                                </div>
-                                <div className="forgetmenot">
-                                    <span className="defaultP"><input name="rememberme" type="checkbox" id="rememberme" value="true" className="ez-hide"/>
-                                        <label>Remember Me</label></span>
-                                </div>
-                                <div className="clearfix"></div>
-                                <p className="submit">
-                                    <input type="submit" name="wp-submit" className="btn btn-primary btn-large-custom margin-zero width-100" id="wp-submit" value="Login"/>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </Basetemplate>
-                )
+            <FormContainer title={'Sign In'}>
+                <Form name="loginform" method="post" onSubmit={this.handleSubmit.bind(this)} submitText={'Login'}>
+                    <LoginFormEntry value={this.state} onChangeText={this.update.bind(this)}/>
+                </Form>
+            </FormContainer>
+        )
     }
 }
 export default Loginmodule;
