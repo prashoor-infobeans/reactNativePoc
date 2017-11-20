@@ -47,13 +47,8 @@ class Loginmodule extends React.Component {
                 let response = JSON.parse(rp);
                 if (response.permission) {
                     Platform({
-                        web: ()=> {
-                            this.setName(response.permission);
-                            this.props.history.push('/dashboard')
-                        },
-                        native: (platform)=> {
-                            console.log(platform);
-                        }
+                        web: this.platformSpecific.bind(this, response, 'web'),
+                        native: this.platformSpecific.bind(this, response)
                     }, () => {
                         console.log("failed");
                     })
@@ -66,6 +61,17 @@ class Loginmodule extends React.Component {
         }).catch(err => {
             console.log(err);
         });
+    }
+
+    platformSpecific(response, type) {
+        switch (type) {
+            case 'web':
+                this.setName(response.permission);
+                window.location.reload();
+                break;
+            default:
+                console.log(type);
+        }
     }
 
     setName(premission) {

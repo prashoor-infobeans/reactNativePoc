@@ -25,7 +25,7 @@ export default class Home extends React.Component {
         return (
             <Router>
                 <Switch>
-                   <Route exact path='/' component={Loginmodule} />
+                   <Route exact path='/' render={() => ((this.state.isLoggedIn) ? (<Redirect to='/dashboard' />): (<Loginmodule />))}/>
                    <Route exact path='/dashboard' render={() => (!(this.state.isLoggedIn) ? (<Redirect to='/' />) : (<Dashboardmodule />))} />
                    <Route exact path='/privacy-policy' component={Privacypolicypage}/>
                 </Switch>
