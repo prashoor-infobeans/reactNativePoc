@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { Actions } from 'react-native-router-flux';
 import Basetemplate from '../../layouts/basicTemplate';
 import DeviceStorage from 'react-device-storage';
 import Form from '../../Components/form';
@@ -70,7 +71,7 @@ class Loginmodule extends React.Component {
                 window.location.reload();
                 break;
             default:
-                console.log(type);
+                Actions.dashboard();
         }
     }
 
