@@ -1650,9 +1650,6 @@ em, i {
     font-style: italic;
 }
 
-p {
-    margin: 0 0 2em 0;
-}
 
 h1, h2, h3, h4, h5, h6 {
     color: #5385c1;
@@ -1979,10 +1976,6 @@ header h6 + p {
 
 /* Form */
 
-form {
-    margin: 0 0 2em 0;
-}
-
 label {
     color: #555;
     display: block;
@@ -2302,16 +2295,6 @@ ol {
 
 ol li {
     padding-left: 0.25em;
-}
-
-ul {
-    list-style: disc;
-    margin: 0 0 2em 0;
-    padding-left: 1em;
-}
-
-ul li {
-    padding-left: 0.5em;
 }
 
 ul.alt {
@@ -3077,6 +3060,7 @@ button:disabled,
 }
 .bannerContent{
     /*margin-top:25%;*/
+    
 }
 .bannerHeader{
     height: 50px;
@@ -3122,4 +3106,112 @@ input[type="submit"].btn-primary, .btn-primary {
     font-size: 14px!important;
     padding-left: 30px;
     padding-right: 30px;
+}
+.footer {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+  height:57px;
+  border-top: 1px solid #54514a;
+}
+.grid {
+    margin: 0px;
+}
+
+.col-940 {
+    width: 100%;
+}
+
+.grid {
+    float: left;
+    padding-top: 0;
+}
+.footer-menu {
+    margin-left: 5px;
+}
+
+.footer-menu {
+    margin-left: 0;
+    padding: 0;
+}
+.footer-menu li {
+    display: inline;
+    list-style-type: none;
+}
+#menu-footer-menu a {
+    font-size: 12px;
+    text-decoration: underline;
+    font-weight: normal!important;
+}
+
+.footer-menu > li:first-child > a {
+    padding: 0 8px 0 0;
+    border-left: none;
+}
+
+.footer-menu li a {
+    padding: 0 8px;
+    border-left: 1px solid #ccc;
+    color: #333;
+}
+
+.footer a {
+    font-weight: bold;
+    color: #fff!important;
+    text-decoration: none!important;
+}
+#menu-footer-social-media-links li {
+    text-decoration: none;
+    height: 55px;
+}
+
+.linkedin-icon {
+    padding-right: 10px;
+}
+
+.linkedin-icon, .twitter-icon, .facebook-icon {
+    float: right;
+}
+
+#menu-footer-social-media-links a {
+    text-decoration: none;
+    font-size: 0.01px;
+}
+
+.twitter-icon a {
+    font-size: 0px;
+    background: url(../../images/sprite-footer.png) no-repeat 0px 13px;
+    width: 34px;
+    height: 34px;
+    display: block;
+    border: 0px;
+    height: 100%;
+    border: none!important;
+    line-height: 55px;
+}
+.linkedin-icon a {
+    font-size: 0px;
+    background: url(../../images/sprite-footer.png) no-repeat -80px 13px;
+    width: 34px;
+    height: 34px;
+    display: block;
+    border: 0px;
+    height: 100%;
+    border: none!important;
+    line-height: 55px;
+}
+ul {
+    list-style: none;
+}
+.fullPageFooter{
+    background-color: #666666;
+}
+
+#content-full {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
 }

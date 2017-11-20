@@ -1,15 +1,15 @@
 import React from 'react';
 import Basicheader from './basicTemplate/basicHeader';
 import Basicsection from './basicTemplate/basicSection';
-import Basicfooter from './basicTemplate/basicFooter';
+import Footermodule from '../Modules/Footer';
 
 class Basetemplate extends React.Component {
     render() {
         return (
-                <div>
-                    <Basicheader/>
+                <div className="baseContainer">
+                    <Basicheader />
                     <Basicsection {...this.props}/>
-                    <Basicfooter/>
+                    <Footermodule />
                 </div>
         )
     }

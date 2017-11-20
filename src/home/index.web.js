@@ -3,6 +3,7 @@ import DeviceStorage from 'react-device-storage';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Basetemplate from '../layouts/basicTemplate';
 import Loginmodule from '../Modules/login';
+import Privacupolicypage from '../Modules/Pages/Privacy policy';
 
 export default class Home extends React.Component {
     constructor() {
@@ -25,6 +26,7 @@ export default class Home extends React.Component {
                 <Switch>
                    <Route exact path='/' component={Loginmodule} />
                    <Route exact path='/demo' render={() => (!(this.state.isLoggedIn) ? (<Redirect to='/' />) : (<Basetemplate />))} />
+                   <Route exact path='/privacy-policy' component={Privacupolicypage} pageid='18'/>
                 </Switch>
              </Router> 
         )
