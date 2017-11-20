@@ -8,8 +8,15 @@ export default class Footermodule extends React.Component
 {
     constructor() {
         super();
+        this.storage = new DeviceStorage({
+            cookieFallback: true,
+            cookie: {
+                secure: true
+            }
+        }).localStorage();
         this.state = {
-            menu: []
+            menu: [],
+            isLoggedIn: this.storage.read('isLoggedIn')
         };
     }
     componentDidMount() {
@@ -29,7 +36,7 @@ export default class Footermodule extends React.Component
                 <li key={index} id="menu-item-57" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-57">
                     <Link to={{
                         pathname: pageUrl,
-                        state: { id: menu_item.object_id }
+                        state: { id: menu_item.object_id, page_name:menu_item.title }
                     }}>{menu_item.title}</Link>
                 </li>
             )
@@ -38,9 +45,12 @@ export default class Footermodule extends React.Component
             <Basicfooter>
                 <div className="grid col-940">
                     <span className="pull-left">
-                        <ul id="menu-footer-menu" className="footer-menu">
-                            {menu}
-                        </ul>
+                        {!this.state.isLoggedIn ?
+                            <ul id="menu-footer-menu" className="footer-menu">
+                                {menu}
+                            </ul>
+                            :null
+                        }
                     </span> 
                 </div>
             </Basicfooter>

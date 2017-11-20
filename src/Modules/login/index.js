@@ -49,7 +49,7 @@ class Loginmodule extends React.Component {
                     Platform({
                         web: ()=> {
                             this.setName(response.permission);
-                            this.props.history.push('/demo')
+                            this.props.history.push('/dashboard')
                         },
                         native: (platform)=> {
                             console.log(platform);
