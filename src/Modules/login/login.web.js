@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Basetemplate from '../../layouts/basicTemplate';
 import DeviceStorage from 'react-device-storage';
-import Platform from '../../Platform';
 import Login from './index';
 
 class Loginmodule extends React.Component {
