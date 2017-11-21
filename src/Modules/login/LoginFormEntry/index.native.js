@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TextInput} from 'react-native';
 
-export default class FormEntry extends React.Component {
+export default class LoginFormEntry extends React.Component {
     render() {
         return (
             <View style={{flex: 1}}> 
@@ -16,6 +16,6 @@ export default class FormEntry extends React.Component {
     }
 }
 
-FormEntry.defaultProps = {
+LoginFormEntry.defaultProps = {
     onChangeText: (key, text) => {}
 }

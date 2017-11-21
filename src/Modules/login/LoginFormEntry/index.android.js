@@ -1,3 +1,3 @@
-import FormEntry from './index.native';
+import LoginFormEntry from './index.native';
 
-export default FormEntry;
+export default LoginFormEntry;
