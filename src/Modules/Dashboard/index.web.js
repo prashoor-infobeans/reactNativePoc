@@ -24,24 +24,8 @@ export default class Dashboardmodule extends React.Component{
             })
         }
         render(){
-            var DataTable = require('react-data-components').DataTable;
- 
-            var columns = [
-              { title: 'Post name', prop: 'name'  },
-              { title: 'Action', prop: 'action' }
-            ];
-
-            var data = this.state.data;
             return (
-                    <Basetemplate >
-                        <DataTable
-                            keys="name"
-                            columns={columns}
-                            initialData={data}
-                            initialPageLength={5}
-                            initialSortBy={{ prop: 'name', order: 'descending' }}
-                        />
-                    </Basetemplate>
+                    <Basetemplate ></Basetemplate>
             );
         }
 }

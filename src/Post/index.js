@@ -1,8 +1,7 @@
 import React from 'react';
-import Article from '../Article';
-import Base from './base';
+import Basetemplate from '../layouts/basicTemplate';
 
-export default class Post extends React.Component {
+export default class Postsmodule extends React.Component {
 
     constructor() {
         super();
@@ -12,24 +11,36 @@ export default class Post extends React.Component {
     }
 
     componentDidMount() {
-        let dataURL = "http://rohit.corporatesitepoc.com/index.php/wp-json/wp/v2/posts";
+        document.body.classList.remove('loginClass');
+        let dataURL = "http://rohit.corporatesitepoc.com/index.php/wp-json/lists/posts";
         fetch(dataURL)
-        .then(res => res.json())
-        .then(res => {
-            this.setState({
-                posts: res
-            })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                  data: res
+                })
         })
     }
 
     render() {
-        let posts = this.state.posts.map((post, index) => {
-            return <Article key={index} post={post}/>
-        });
+        var DataTable = require('react-data-components').DataTable;
+ 
+        var columns = [
+          { title: 'Post name', prop: 'name'  },
+          { title: 'Action', prop: 'action' }
+        ];
+
+        var data = this.state.data;
         return (
-            <Base>
-                {posts}
-            </Base>
-        )
+                <Basetemplate >
+                    <DataTable
+                        keys="name"
+                        columns={columns}
+                        initialData={data}
+                        initialPageLength={5}
+                        initialSortBy={{ prop: 'name', order: 'descending' }}
+                    />
+                </Basetemplate>
+        );
     }
 }
