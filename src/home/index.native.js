@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import { Router, ActionConst, Scene } from 'react-native-router-flux';
-import Loginmodule from '../Modules/login';
+import Loginmodule from '../Modules/login/login';
 import Dashboardmodule from '../Modules/Dashboard';
 import Constant from '../Constant';
 
