@@ -1,34 +1,33 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { Actions } from 'react-native-router-flux';
-import Basetemplate from '../../layouts/basicTemplate';
-import DeviceStorage from 'react-device-storage';
 import Form from '../../Components/form';
 import FormContainer from '../../Components/FormContainer';
 import LoginFormEntry from './LoginFormEntry';
-import Platform from '../../Platform';
 
-class Loginmodule extends React.Component {
-    constructor() {
-        super();
-        this.storage = new DeviceStorage({
-            cookieFallback: true,
-            cookie: {
-                secure: true
-            }
-        }).localStorage();
+export default class LoginView extends React.Component {
+
+    constructor(props) {
+        super(props);
 
         this.state = {
-            user_login: "", user_pass: "",
-            isLoggedIn: this.storage.read('isLoggedIn')
+            user_login: "", user_pass: ""
         };
     }
-    
+
     update(key, text) {
         this.setState({[key]: text})
     }
 
-    handleSubmit() {
+    render() {
+        return (
+            <FormContainer title={'Sign In'}>
+                <Form name="loginform" method="post" onSubmit={this.props.handleSubmit} submitText={'Login'}>
+                    <LoginFormEntry value={this.state} onChangeText={this.update.bind(this)}/>
+                </Form>
+            </FormContainer>
+        )
+    }
+    
+    loginCall(success, failure = null) {
         fetch(
             'http://rohit.corporatesitepoc.com/index.php/wp-json/dummyForm/update',
             {
@@ -43,16 +42,13 @@ class Loginmodule extends React.Component {
             }
         ).then(resp => {
             let copyRes = resp.clone();
-
+    
             resp.json().then(rp => {
                 let response = JSON.parse(rp);
                 if (response.permission) {
-                    Platform({
-                        web: this.platformSpecific.bind(this, response, 'web'),
-                        native: this.platformSpecific.bind(this, response)
-                    }, () => {
-                        console.log("failed");
-                    })
+                    if (typeof success == "function") {
+                        success(response);
+                    }
                 }
             }).catch(err => {
                 copyRes.text().then(rp => {
@@ -61,37 +57,9 @@ class Loginmodule extends React.Component {
             });
         }).catch(err => {
             console.log(err);
+            if (typeof failure == "function") {
+                failure(err);
+            }
         });
-    }
-
-    platformSpecific(response, type) {
-        switch (type) {
-            case 'web':
-                this.setName(response.permission);
-                window.location.reload();
-                break;
-            default:
-                Actions.dashboard();
-        }
-    }
-
-    setName(premission) {
-        this.storage.save('isLoggedIn', premission);
-        this.setState({
-          premission
-        });
-    }
-
-    render() {
-        return (
-            <FormContainer title={'Sign In'}>
-                <Form name="loginform" method="post" onSubmit={this.handleSubmit.bind(this)} submitText={'Login'}>
-                    <LoginFormEntry value={this.state} onChangeText={this.update.bind(this)}/>
-                </Form>
-            </FormContainer>
-        )
     }
 }
-export default Loginmodule;
-
-
