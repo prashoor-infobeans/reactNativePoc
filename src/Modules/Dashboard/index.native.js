@@ -6,11 +6,6 @@ export default class Dashboardmodule extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <NavigationBar
-                    statusBar={{style:'light-content'}}
-                    title={'Dashboard'}
-                    rightButton={null}
-                    leftButton={null}/>
                 {/*{imageSource: imageSource, handler: () => this._action()}*/}
                 <View style={styles.content}>
                     <Text>Dashboard</Text>

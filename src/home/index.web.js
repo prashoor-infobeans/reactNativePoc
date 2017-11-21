@@ -2,7 +2,7 @@ import React from 'react';
 import DeviceStorage from 'react-device-storage';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Basetemplate from '../layouts/basicTemplate';
-import Loginmodule from '../Modules/login';
+import Loginmodule from '../Modules/login/login';
 import Dashboardmodule from '../Modules/Dashboard';
 import Privacypolicypage from '../Modules/Pages/privacy_policy';
 
