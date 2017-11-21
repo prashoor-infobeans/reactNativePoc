@@ -1,6 +1,7 @@
 const Constant = {
     color: {
-        kThemeMainColor: '#227057'
+        kThemeMainColor: '#227057',
+        kButtonColor: '#0F976C'
     }
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import { Router, ActionConst, Scene } from 'react-native-router-flux';
 import Loginmodule from '../Modules/login/login';
+import Menu from '../layouts/basicTemplate/menu/menu';
 import Dashboardmodule from '../Modules/Dashboard';
 import Constant from '../Constant';
 
@@ -20,11 +21,18 @@ export default class Home extends React.Component {
                         hideNavBar
                         component={Loginmodule}
                         type={ActionConst.RESET}/>
-                    <Scene
-                        key="dashboard"
-                        hideNavBar
-                        component={Dashboardmodule}
-                        type={ActionConst.RESET}/>
+                    {/* Drawer Scene*/}
+
+                    <Scene key="drawer" type={ActionConst.RESET} component={Menu}  open={false} >
+                        {/* Extra Scene to wrap up all the drawer tab views*/}
+                        <Scene key="wrapper">
+                            <Scene
+                                key="dashboard"
+                                initial
+                                component={Dashboardmodule}
+                                type={ActionConst.RESET}/>
+                        </Scene>
+                    </Scene>
                 </Scene>
             </Router>
         );
