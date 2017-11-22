@@ -57,10 +57,8 @@ export default class Menu extends Component {
 	
 	// NavigationDrawer Menu ListView
 	render() {
-		const state = this.props.navigation.state.params;
-		debugger;
-        // To access child scenes or screeens for rendering
-        const child = state.children ? state.children[0] : <View />;
+		// const state = this.props.navigation.state.params;
+		console.log(this.props);
         const drawerWidth = screenSize.width - 50;
         if (!this.sideMenu) {
           this.sideMenu = (
@@ -75,7 +73,7 @@ export default class Menu extends Component {
         return (
             <Drawer
                 ref="navigation"
-                open={state.open}
+                open={false}
                 onOpen={()=>Actions.refresh({key:state.key, open: true})}
                 onClose={()=>Actions.refresh({key:state.key, open: false})}
                 type="overlay"
@@ -90,7 +88,7 @@ export default class Menu extends Component {
 				tweenHandler={(ratio) => ({
 					mainOverlay: { opacity: ratio / 2}
 				})}>
-                <DefaultRenderer navigationState={child} onNavigate={this.props.navigation.navigate} />
+				{this.props.children}
             </Drawer>
 		);
 	}

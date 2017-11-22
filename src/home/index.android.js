@@ -1,3 +1,3 @@
-import Home from './index.native';
+import Home from './native';
 
 export default Home;
