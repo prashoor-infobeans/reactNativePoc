@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
-import Constant from 'IAS/constants';
+import Constant from '../../Constant';
 var dismissKeyboard = require('IAS/dismissKeyboard');
 import DeviceInfo from 'IAS/DeviceInfo';
 import Touchable from 'IAS/views/components/Touchable';

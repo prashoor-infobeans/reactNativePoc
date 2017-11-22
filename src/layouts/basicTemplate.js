@@ -1,7 +1,7 @@
 import React from 'react';
 import DeviceStorage from 'react-device-storage';
 import Basicheader from './basicTemplate/basicHeader';
-import Navigation from './basicTemplate/navigationModule';
+import Menu from './basicTemplate/menu/menu';
 import Basicsection from './basicTemplate/basicSection';
 import Footermodule from '../Modules/Footer';
 
@@ -24,7 +24,7 @@ class Basetemplate extends React.Component {
                 <div className="baseContainer">
                     {!this.state.isLoggedIn ?
                         <Basicheader />
-                        :<Navigation/>
+                        :<Menu />
                     }
                     <Basicsection {...this.props}/>
                     {!this.state.isLoggedIn ?
