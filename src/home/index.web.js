@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import Basetemplate from '../layouts/basicTemplate';
 import Loginmodule from '../Modules/login/login';
 import Dashboardmodule from '../Modules/Dashboard';
-import Postsmodule from '../Post';
+import Postsmodule from '../Modules/Post';
 import Privacypolicypage from '../Modules/Pages/privacy_policy';
+//import Post from '../Modules/Posts/post';
 
 export default class Home extends React.Component {
     constructor() {
@@ -27,9 +28,11 @@ export default class Home extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path='/' render={() => ((this.state.isLoggedIn) ? (<Redirect to='/dashboard' />): (<Loginmodule />))}/>
-                    <Route exact path='/privacy-policy' component={Privacypolicypage}/>
                     <Route exact path='/dashboard' render={() => (!(this.state.isLoggedIn) ? (<Redirect to='/' />) : (<Dashboardmodule />))} />       
-                    <Route exact path='/posts' render={() => (!(this.state.isLoggedIn) ? (<Redirect to='/' />) : (<Postsmodule />))} />       
+                    <Route exact path='/posts' render={() => (!(this.state.isLoggedIn) ? (<Redirect to='/' />) : (<Postsmodule type="list"/>))} />
+                    <Route path='/posts/:name' render={(props) => (!(this.state.isLoggedIn) ? (<Redirect to='/' />) : (<Postsmodule type="data" {...props}/>))} />
+                            
+                    <Route exact path='/privacy-policy' component={Privacypolicypage}/>
                 </Switch>
              </Router> 
         )

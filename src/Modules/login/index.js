@@ -2,6 +2,7 @@ import React from 'react';
 import Form from '../../Components/form';
 import FormContainer from '../../Components/FormContainer';
 import LoginFormEntry from './LoginFormEntry';
+import Constant from '../../Constant';
 
 export default class LoginView extends React.Component {
 
@@ -29,7 +30,7 @@ export default class LoginView extends React.Component {
     
     loginCall(success, failure = null) {
         fetch(
-            'http://rohit.corporatesitepoc.com/index.php/wp-json/dummyForm/update',
+            Constant.url.siteurl+'wp-json/dummyForm/update',
             {
                 method: 'post',
                 headers: {
@@ -42,7 +43,7 @@ export default class LoginView extends React.Component {
             }
         ).then(resp => {
             let copyRes = resp.clone();
-    
+            
             resp.json().then(rp => {
                 let response = JSON.parse(rp);
                 if (response.permission) {
