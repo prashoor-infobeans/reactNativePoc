@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import Basetemplate from '../layouts/basicTemplate';
 import Loginmodule from '../Modules/login/login';
 import Dashboardmodule from '../Modules/Dashboard';
-import Postsmodule from '../Modules/Post';
+import Postsmodule from '../Post/post';
+
 import Privacypolicypage from '../Modules/Pages/privacy_policy';
 //import Post from '../Modules/Posts/post';
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import Basetemplate from '../../layouts/basicTemplate';
+import Basetemplate from '../layouts/basicTemplate';
 import { Link, Redirect } from 'react-router-dom';
-import Constant from '../../Constant';
+import Constant from '../Constant';
 
 export default class Postsmodule extends React.Component {
     componentDidMount() {

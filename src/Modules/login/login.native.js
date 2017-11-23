@@ -9,9 +9,11 @@ class Loginmodule extends React.Component {
     }
 
     handleSubmit() {
+        Actions.drawer();
+        return;
         if (this.refs.login) {
             this.refs.login.loginCall(response => {
-                Actions.dashboard();
+                Actions.drawer();
             }, err => {
                 console.log(err);
             });
