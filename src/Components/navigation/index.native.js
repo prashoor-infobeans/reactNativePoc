@@ -3,6 +3,7 @@ import {
 	View,
 	StyleSheet,
 	Text,
+	FlatList,
 	TouchableHighlight,
 	Image
 } from 'react-native';

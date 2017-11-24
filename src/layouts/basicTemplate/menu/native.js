@@ -59,6 +59,7 @@ export default class Menu extends Component {
 	render() {
 		// const state = this.props.navigation.state.params;
 		console.log(this.props);
+		debugger
         const drawerWidth = screenSize.width - 50;
         if (!this.sideMenu) {
           this.sideMenu = (
@@ -73,7 +74,7 @@ export default class Menu extends Component {
         return (
             <Drawer
                 ref="navigation"
-                open={false}
+                open={this.props.open}
                 onOpen={()=>Actions.refresh({key:state.key, open: true})}
                 onClose={()=>Actions.refresh({key:state.key, open: false})}
                 type="overlay"

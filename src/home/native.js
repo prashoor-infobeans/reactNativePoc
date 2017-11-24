@@ -23,10 +23,10 @@ export default class Home extends React.Component {
                         type={ActionConst.RESET}/>
                     {/* Drawer Scene*/}
 
-                    <Menu key="drawer" hideNavBar open={false} >
+                    <Scene key="drawer" hideNavBar component={Menu} open={false} >
                         {/* Extra Scene to wrap up all the drawer tab views*/}
                         <Scene key="wrapper">
-                            <Scene
+                            <Dashboardmodule
                                 key="dashboard"
                                 initial
                                 headerTintColor="#fff"
@@ -34,10 +34,9 @@ export default class Home extends React.Component {
                                 title="Dashboard"
                                 back
                                 backTitle="Back"
-                                component={Dashboardmodule}
                                 type={ActionConst.RESET}/>
                         </Scene>
-                    </Menu>
+                    </Scene>
                 </Scene>
             </Router>
         );
