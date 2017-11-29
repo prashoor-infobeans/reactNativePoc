@@ -9,8 +9,6 @@ import {
 	Dimensions
 } from 'react-native';
 
-import Drawer from 'react-native-drawer';
-import {Actions, DefaultRenderer} from 'react-native-router-flux';
 import NavigationDrawer from '../../../Components/navigation';
 import Constant from '../../../Constant';
 
@@ -27,7 +25,6 @@ export default class Menu extends Component {
 	}
 
 	componentDidMount() {
-		Actions.refresh({key: 'dashboard'});
 		this.emitter = DeviceEventEmitter.addListener('setSideMenuIndex', this.setSideMenuIndex.bind(this));
 	}
 
@@ -57,60 +54,29 @@ export default class Menu extends Component {
 	
 	// NavigationDrawer Menu ListView
 	render() {
-		// const state = this.props.navigation.state.params;
-		console.log(this.props);
-		debugger
         const drawerWidth = screenSize.width - 50;
-        if (!this.sideMenu) {
-          this.sideMenu = (
-			  <NavigationDrawer menu={this.menuItems} _pressRow={this._pressRow.bind(this)} footerConfig={{
-					style: "logout",
-					title: 'Logout',
-					click: this.handelClick.bind(this)
-				}}/>
-			);
-        }
-
         return (
-            <Drawer
-                ref="navigation"
-                open={this.props.open}
-                onOpen={()=>Actions.refresh({key:state.key, open: true})}
-                onClose={()=>Actions.refresh({key:state.key, open: false})}
-                type="overlay"
-                content={this.sideMenu}
-                tapToClose={true}
-                openDrawerOffset={screenSize.width - drawerWidth}
-                negotiatePan={true}
-                panCloseMask={screenSize.width - drawerWidth + 44}
-                styles={{
-					mainOverlay: { backgroundColor: 'black', opacity: 0}
-				}}
-				tweenHandler={(ratio) => ({
-					mainOverlay: { opacity: ratio / 2}
-				})}>
-				{this.props.children}
-            </Drawer>
+			<NavigationDrawer menu={this.menuItems} _pressRow={this._pressRow.bind(this)} footerConfig={{
+				style: "logout",
+				title: 'Logout',
+				click: this.handelClick.bind(this)
+			}}/>
 		);
 	}
 
 	handelClick() {
-		Actions.refresh({key: 'drawer', open:false});
+		this.props.navigation.navigate("DrawerToggle");
 		Alert.alert(
 			'Logout',
 			'Are you sure you want to logout?',
 			[
 				{
 					text: "Ok",
-					onPress: () => {
-						
-					}
+					onPress: () => {}
 				},
 				{
 					text: 'Cancel',
-					onPress: () => {
-				 		//console.log('Cancel Pressed!');
-					}
+					onPress: () => {}
 				},
 			]
 		);
@@ -118,15 +84,18 @@ export default class Menu extends Component {
 
 	// listview data source and delegate
    	_pressRow(rowID, rowData) {
-		Actions.refresh({key: 'drawer', open: false});
-			// Updating the currentIndex
+		// Updating the currentIndex
 		var index = rowID;
 		this.currentIndex = index;
 		this.setState({});
-	 	switch (rowData) {
-			case "n":
+		switch (rowData.nav) {
+			case "dashboard":
+				this.props.navigation.navigate("dashboard");
 				break;
+			case "pages":
+			case "posts":
 			default:
+				this.props.navigation.navigate("DrawerToggle");
 		}
 	}
 }

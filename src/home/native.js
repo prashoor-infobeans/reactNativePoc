@@ -1,47 +1,38 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import { Router, ActionConst, Scene } from 'react-native-router-flux';
+// import { Router, ActionConst, Scene } from 'react-native-router-flux';
 import Loginmodule from '../Modules/login/login';
 import Menu from '../layouts/basicTemplate/menu/menu';
 import Dashboardmodule from '../Modules/Dashboard';
+import {StackNavigator, DrawerNavigator} from 'react-navigation';
 import Constant from '../Constant';
 
-export default class Home extends React.Component {
-    constructor() {
-        super();
+const Drawer = DrawerNavigator(
+    {
+        dashboard: {
+            screen: Dashboardmodule,
+        }
+    },
+    {
+        contentComponent: Menu
     }
+);
 
-    render() {
-        return (
-            <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle}>
-                <Scene key="root">
-                    <Scene
-                        key="loginScreen"
-                        initial
-                        hideNavBar
-                        component={Loginmodule}
-                        type={ActionConst.RESET}/>
-                    {/* Drawer Scene*/}
-
-                    <Scene key="drawer" hideNavBar component={Menu} open={false} >
-                        {/* Extra Scene to wrap up all the drawer tab views*/}
-                        <Scene key="wrapper">
-                            <Dashboardmodule
-                                key="dashboard"
-                                initial
-                                headerTintColor="#fff"
-                                backButtonTextStyle={{color: '#fff'}}
-                                title="Dashboard"
-                                back
-                                backTitle="Back"
-                                type={ActionConst.RESET}/>
-                        </Scene>
-                    </Scene>
-                </Scene>
-            </Router>
-        );
+const Home = StackNavigator(
+    {
+        loginScreen: {
+            screen: Loginmodule
+        },
+        Drawer: {
+            screen: Drawer
+        }
+    },
+    {
+        headerMode: 'none'
     }
-}
+);
+
+export default Home;
 
 const styles = StyleSheet.create({
     navBar: {
@@ -50,5 +41,5 @@ const styles = StyleSheet.create({
     navBarTitle:{
       color:'white'
     }
-  });
+});
   

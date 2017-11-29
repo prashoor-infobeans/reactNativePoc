@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Actions } from 'react-native-router-flux';
 import Login from './index';
 
 class Loginmodule extends React.Component {
@@ -9,11 +8,11 @@ class Loginmodule extends React.Component {
     }
 
     handleSubmit() {
-        Actions.drawer();
+        this.props.navigation.navigate("Drawer");
         return;
         if (this.refs.login) {
             this.refs.login.loginCall(response => {
-                Actions.drawer();
+                this.props.navigation.navigate("Drawer");
             }, err => {
                 console.log(err);
             });

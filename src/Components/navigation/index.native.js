@@ -11,15 +11,17 @@ import {
 import Constant from '../../Constant';
 
 export default class Navigation extends React.Component {
-    // Navigation View
+	// Navigation View
+	_keyExtractor = (data, index) => index
+
     render() {
-		const {title, click} = this.props.footerConfig || {title: "Footer", click: () => {}}		
+		const {title, click} = this.props.footerConfig || {title: "Footer", click: () => {}}	
 		return (
             <View style={styles.flex}>
                 {/* Menu List options */}
                 <View style={styles.menuListContainer}>
                   <FlatList
-                    data={this.shownList}
+                    data={this.props.menu}
                     renderItem={this._renderMenuRow.bind(this)}
                     keyExtractor={this._keyExtractor}
                     removeClippedSubviews={false}
@@ -53,8 +55,8 @@ export default class Navigation extends React.Component {
       return (
         <TouchableHighlight underlayColor = { ( rowID == 0 ) ? '#F4F4F4' : 'transparent' } onPress={() => {
             if (typeof this.props._pressRow == "function") {
-				this.props._pressRow(rowID, rowData);
-			}
+							this.props._pressRow(rowID, rowData);
+						}
           }}>
           <View style={{backgroundColor: (parseInt(this.currentIndex) == parseInt(rowID)) ? '#F4F4F4' : 'transparent'}}>
             <View style={styles.centerContentNoFlex}>
