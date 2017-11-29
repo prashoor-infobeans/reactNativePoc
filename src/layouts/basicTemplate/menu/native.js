@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {
 	StyleSheet,
-	Text,
 	View,
 	DeviceEventEmitter,
-	FlatList,
 	Alert,
 	Dimensions
 } from 'react-native';
 
+import NavigationBar from '../../../Components/Nav/NavigationBar';
 import NavigationDrawer from '../../../Components/navigation';
 import Constant from '../../../Constant';
 
@@ -40,15 +39,18 @@ export default class Menu extends Component {
 	menuItems = [
         {
             title: 'Dashboard',
-            nav: 'dashboard'
+			nav: 'dashboard',
+			source: require('../../../images/dashboard-icon/dashboard-icon.png')
         },
         {
             title: 'All posts',
-            nav: 'posts'
+			nav: 'posts',
+			source: require('../../../images/dashboard-icon/dashboard-icon.png')
         },
         {
             title: 'All pages',
-            nav: 'pages'
+			nav: 'pages',
+			source: require('../../../images/dashboard-icon/dashboard-icon.png')
         }
 	];
 	
@@ -56,11 +58,15 @@ export default class Menu extends Component {
 	render() {
         const drawerWidth = screenSize.width - 50;
         return (
-			<NavigationDrawer menu={this.menuItems} _pressRow={this._pressRow.bind(this)} footerConfig={{
-				style: "logout",
-				title: 'Logout',
-				click: this.handelClick.bind(this)
-			}}/>
+			<View style={{flex: 1}}>
+				<NavigationBar 
+					title={{title: "Menu"}}/>
+				<NavigationDrawer menu={this.menuItems} _pressRow={this._pressRow.bind(this)} footerConfig={{
+					style: "logout",
+					title: 'Logout',
+					click: this.handelClick.bind(this)
+				}}/>
+			</View>
 		);
 	}
 

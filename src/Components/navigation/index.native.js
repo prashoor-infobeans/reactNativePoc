@@ -37,7 +37,7 @@ export default class Navigation extends React.Component {
                       style={styles.seperator}
                     />
                     <View style={styles.centerContent}>
-                      {/*<Image style={styles.logoutIcon} source={require()}/>*/}
+                      <Image style={styles.logoutIcon} source={require('../../images/logout-icon/logout-icon.png')}/>
                       <View style={styles.row}>
                         <Text style={[styles.footerTitle, Constant.fontFamilyStyle]}>
                           {title}
@@ -52,6 +52,7 @@ export default class Navigation extends React.Component {
 
     // NavigationDrawer Menu ListItem View
     _renderMenuRow({item: rowData, index: rowID}) {
+			const {source} = rowData;
       return (
         <TouchableHighlight underlayColor = { ( rowID == 0 ) ? '#F4F4F4' : 'transparent' } onPress={() => {
             if (typeof this.props._pressRow == "function") {
@@ -60,7 +61,7 @@ export default class Navigation extends React.Component {
           }}>
           <View style={{backgroundColor: (parseInt(this.currentIndex) == parseInt(rowID)) ? '#F4F4F4' : 'transparent'}}>
             <View style={styles.centerContentNoFlex}>
-              {/*<Image style={styles.rowIcon} source={source}/>*/}
+              <Image style={styles.rowIcon} source={source}/>
               <View style={styles.row}>
                 <Text style={[styles.rowText, Constant.fontFamilyStyle]}>
                   {rowData.title}
